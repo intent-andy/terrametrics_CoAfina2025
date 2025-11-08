@@ -2,14 +2,14 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-# Page configuration
+# Configuración de la página
 st.set_page_config(
     page_title="Índices del Futuro",
-    page_icon="🌍",
+    page_icon=":argentina:",
     layout="wide"
 )
 
-# Sidebar
+# Sidebar navigation
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["Live Analysis", "AI Model"])
 
