@@ -27,8 +27,6 @@ video = Path(__file__).parent / f"videos/{year}.mp4"
 if video.exists():
     video_file = open(video, "rb")
     video_bytes = video_file.read()
-    col1, col2, col3 = st.columns(3)
-    with col2:
-        st.video(video_bytes)
+    st.video(video_bytes)
 else:
     st.error("Lo sentimos, el video para el año seleccionado no está disponible.")
