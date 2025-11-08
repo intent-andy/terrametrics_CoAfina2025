@@ -2,14 +2,18 @@ import streamlit as st
 
 # Configuración de la página
 st.set_page_config(
-    page_title="Índices del Futuro",
+    page_title="'nombre de la app'",
     page_icon=":argentina:",
     layout="wide"
 )
 
 # Panel de navegación superior
 pages = {
-    "Inicio": [st.Page("bienvenida.py", title="Inicio")],
+    "Inicio": [st.Page("inicio.py", title="Inicio")],
+    "Índices": [
+        st.Page("iet.py", title="Índice de Equilibrio Territorial (IET)"),
+        st.Page("ipmi.py", title="Índice de Presión Marina Integrado (IPMI) - Pronto")
+    ],
     "Recursos": [
         st.Page("mapas.py", title="Mapas"),
         st.Page("graficos.py", title="Gráficos"),
