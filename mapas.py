@@ -1,8 +1,9 @@
 import streamlit as st
 import ee
 import folium
-import geemap.foliumap as geemap_folium # Importante para la integración
+import geemap.foliumap as geemap_folium
 from streamlit_folium import st_folium
+from google.oauth2 import service_account
 
 # --- 0. Configuración de la Página ---
 st.set_page_config(page_title="Índice IET en GEE", layout="wide")
