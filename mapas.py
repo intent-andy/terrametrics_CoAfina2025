@@ -5,6 +5,13 @@ import geemap.foliumap as geemap_folium
 from streamlit_folium import st_folium
 from google.oauth2 import service_account # Importante para la autenticación
 
+
+# Define el scope/ámbito necesario para Earth Engine
+EE_SCOPES = [
+    'https://www.googleapis.com/auth/cloud-platform',
+    'https://www.googleapis.com/auth/earthengine' 
+]
+
 # --- 0. Configuración de la Página ---
 st.set_page_config(page_title="Índice IET en GEE", layout="wide")
 st.title("🛰️ Visualizador GEE: Índice IET Córdoba (2023)")
@@ -17,7 +24,10 @@ try:
     creds_dict = st.secrets["google_credentials"]
     
     # Crear un objeto de credenciales de Google
-    credentials = service_account.Credentials.from_service_account_info(creds_dict)
+    credentials = service_account.Credentials.from_service_account_info(
+        creds_dict,
+        scopes=EE_SCOPES # <-- Esto resuelve el 'invalid_scope'
+    )
     
     # Inicializar Earth Engine con esas credenciales
     ee.Initialize(credentials=credentials)
