@@ -34,7 +34,8 @@ st.divider()
 # Interpretación del IET
 st.markdown('<h3 style="text-align: center;">Interpretación del IET</h3>', unsafe_allow_html=True)
 st.markdown("""
-<p style="text-align: justify;">El valor del IET proporciona una indicación clara del equilibrio territorial:</p>
-- <p style="text-align: justify;">Valores altos de IET indican un territorio con buena cobertura vegetal y humedad, y baja presencia de áreas construidas, lo que sugiere un equilibrio ecológico favorable.</p>
-- <p style="text-align: justify;">Valores bajos de IET señalan un territorio con escasa vegetación y humedad, y una alta proporción de áreas construidas, lo que puede indicar un desequilibrio ecológico.</p>
+<ul>
+    <li><strong>Valores altos de IET:</strong> Indican un territorio con buena salud ecológica, caracterizado por una vegetación densa y niveles adecuados de humedad.</li>
+    <li><strong>Valores bajos de IET:</strong> Señalan áreas con deficiencia en vegetación o humedad, lo que puede ser indicativo de problemas ambientales o degradación del territorio.</li>
+</ul>
 """, unsafe_allow_html=True)
