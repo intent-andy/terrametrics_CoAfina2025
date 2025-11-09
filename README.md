@@ -2,7 +2,7 @@
 
 Proyecto desarrollado para el reto "Índices del futuro: Tierra y Mar Argentino" (CoAfina 2025). Entrega de un toolkit reproducible que mezcla análisis territorial (satélite + series temporales), visualización web con Streamlit y generación de videos anuales animados.
 
-Resumen rápido
+## Resumen rápido
 - Analiza cobertura de suelo, vegetación secundaria y pérdida de vegetación (1985–2024).
 - Visualiza mapas derivados de Sentinel‑2 + CHIRPS + WorldCover (índice IET / IVT).
 - Genera gráficos temporales y videos animados por año con contenido didáctico.
@@ -23,7 +23,7 @@ Estructura principal (raíz del repo)
 - .gitignore — excluye secrets y claves.
 - LICENSE.txt — CC BY‑NC‑SA 4.0.
 
-Instalación (local)
+## Instalación (local)
 1. Clonar el repositorio:
    git clone <https://github.com/intent-andy/terrametrics_CoAfina2025.git>
    cd terrametrics_CoAfina2025
@@ -32,7 +32,7 @@ Instalación (local)
    .venv\Scripts\activate
    pip install -r requirements.txt
 
-Ejecución
+## Ejecución
 - Interfaz principal (Streamlit):
   streamlit run app.py
 - Páginas relevantes:
@@ -41,9 +41,12 @@ Ejecución
   - Videos interactivos: vid-int.py reproduce mp4 desde la carpeta videos/{año}.mp4
 - Generación de videos: abrir `video_generation/Generador de videos.ipynb` y seguir las celdas; los MP4 se guardan en `video_generation/Videos/output` o en `videos/` según configuración.
 
-Datos
+## Datos
 - Los CSV en time-series_data ya contienen las series consolidadas (1985–2024). Son usados por graficos.py y por los notebooks en video_generation/Analisis/.
 - No subir credenciales ni claves: .gitignore incluye exclusiones para .streamlit y claves EE.
+
+## Video
+Puede ver la presentación de este proyecto en este [link](https://www.youtube.com/watch?v=Zejh2q0paII)
 
 Notas técnicas / advertencias
 - Google Earth Engine: si se ejecuta en Streamlit Cloud, configura secrets con la cuenta de servicio y la clave (JSON o PEM). mapas.py contiene helpers para escribir la clave temporalmente y inicializar EE.
