@@ -127,8 +127,7 @@ def get_all_data():
     try:
         # Definir la región de Córdoba (EXACTO como tu script)
         cordoba = ee.FeatureCollection("FAO/GAUL/2015/level1") \
-            .filter(ee.Filter.eq('ADM1_NAME', 'Buenos Aires')) \
-            .filter(ee.Filter.eq('ADM0_NAME', 'Argentina'))
+            .filter(ee.Filter.eq('ADM1_NAME', 'Buenos Aires'))
         
         # Obtener imágenes Sentinel-2 (EXACTO como tu script)
         s2 = ee.ImageCollection("COPERNICUS/S2_SR") \
