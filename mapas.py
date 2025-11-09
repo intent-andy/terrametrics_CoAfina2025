@@ -3,15 +3,14 @@ import ee
 import folium
 import geemap.foliumap as geemap_folium
 from streamlit_folium import st_folium
-from google.oauth2 import service_account
+from google.oauth2 import service_account # Importante para la autenticación
 
 # --- 0. Configuración de la Página ---
 st.set_page_config(page_title="Índice IET en GEE", layout="wide")
-st.title("Visualizador de Google Earth Engine en Streamlit")
-st.markdown("Mostrando el índice IET para Córdoba (2023) calculado en GEE.")
+st.title("🛰️ Visualizador GEE: Índice IET Córdoba (2023)")
 
-# --- 1. Inicialización de Earth Engine ---
-# Intentamos inicializar. Si falla, es probable que no esté autenticado.
+# --- 1. Autenticación Segura (Usando Streamlit Secrets) ---
+# Este bloque es el que cambia para el despliegue.
 try:
     # Obtener las credenciales desde los Secrets de Streamlit
     # st.secrets["google_credentials"] hace referencia a la sección [google_credentials] en tu TOML
@@ -23,83 +22,80 @@ try:
     # Inicializar Earth Engine con esas credenciales
     ee.Initialize(credentials=credentials)
     
-    st.success("¡Autenticación con Google Earth Engine exitosa!")
+    # Opcional: un mensaje de éxito que solo tú verás mientras depuras
+    # st.success("¡Autenticación con Google Earth Engine exitosa!")
 
 except Exception as e:
     st.error(f"Error al autenticar o inicializar GEE: {e}")
-    st.error("Asegúrate de que: \n"
-             "1. El 'Secret' esté configurado correctamente en Streamlit Cloud. \n"
-             "2. La cuenta de servicio esté registrada en GEE (earthengine.google.com/signup).")
-    st.stop()
+    st.error("Por favor, verifica: \n"
+             "1. Que el 'Secret' [google_credentials] esté bien configurado en Streamlit Cloud. \n"
+             "2. Que la cuenta de servicio esté registrada en GEE (earthengine.google.com/signup).")
+    st.stop() # Detiene la ejecución si la autenticación falla
 
-
-# --- 2. Tu Código GEE (Traducido a la API de Python) ---
-# La sintaxis de JS y Python es casi idéntica.
-cordoba = ee.FeatureCollection("FAO/GAUL/2015/level2") \
-    .filter(ee.Filter.eq('ADM2_NAME', 'Córdoba'))
-
-s2 = ee.ImageCollection("COPERNICUS/S2_SR") \
-    .filterBounds(cordoba) \
-    .filterDate('2023-01-01', '2023-12-31') \
-    .select(['B4', 'B8', 'B11']) \
-    .median() # Usamos median() para tener una sola imagen sin nubes
-
-ndvi = s2.normalizedDifference(['B8', 'B4']).rename('NDVI')
-ndmi = s2.normalizedDifference(['B8', 'B11']).rename('NDMI')
-
-chirps = ee.ImageCollection("UCSB-CHG/CHIRPS/DAILY") \
-    .filterBounds(cordoba) \
-    .filterDate('2023-01-01', '2023-12-31') \
-    .sum() \
-    .rename('Precipitation')
-
-urban = ee.Image("ESA/WorldCover/v100/2020") \
-    .select('Map') \
-    .eq(50) \
-    .rename('Urban')
-
-iet = ndvi \
-    .multiply(ndmi) \
-    .multiply(chirps) \
-    .divide(urban.add(1)) \
-    .rename('IET')
-
-# Recortamos la imagen final a la geometría de Córdoba
-iet_clipped = iet.clip(cordoba)
-
-# --- 3. Parámetros de Visualización ---
-# Los mismos que usaste en tu código JS
-vis_params = {
-    'min': 0,
-    'max': 1,
-    'palette': ['red', 'yellow', 'green']
-}
-
-# --- 4. Centrado del Mapa ---
-# En lugar de Map.centerObject (que es del Code Editor),
-# obtenemos las coordenadas del centro para Folium.
-# Usamos .getInfo() para traer la información del servidor GEE a Python.
+# --- 2. Tu Código GEE (Traducido a Python) ---
+# Esta parte es idéntica a tu lógica original
 try:
+    cordoba = ee.FeatureCollection("FAO/GAUL/2015/level2") \
+        .filter(ee.Filter.eq('ADM2_NAME', 'Córdoba'))
+
+    s2 = ee.ImageCollection("COPERNICUS/S2_SR") \
+        .filterBounds(cordoba) \
+        .filterDate('2023-01-01', '2023-12-31') \
+        .select(['B4', 'B8', 'B11']) \
+        .median() # Usamos median() para tener una sola imagen
+
+    ndvi = s2.normalizedDifference(['B8', 'B4']).rename('NDVI')
+    ndmi = s2.normalizedDifference(['B8', 'B11']).rename('NDMI')
+
+    chirps = ee.ImageCollection("UCSB-CHG/CHIRPS/DAILY") \
+        .filterBounds(cordoba) \
+        .filterDate('2023-01-01', '2023-12-31') \
+        .sum() \
+        .rename('Precipitation')
+
+    urban = ee.Image("ESA/WorldCover/v100/2020") \
+        .select('Map') \
+        .eq(50) \
+        .rename('Urban')
+
+    iet = ndvi \
+        .multiply(ndmi) \
+        .multiply(chirps) \
+        .divide(urban.add(1)) \
+        .rename('IET')
+
+    # Recortamos la imagen final a la geometría de Córdoba
+    iet_clipped = iet.clip(cordoba)
+
+    # --- 3. Parámetros de Visualización ---
+    vis_params = {
+        'min': 0,
+        'max': 1,
+        'palette': ['red', 'yellow', 'green']
+    }
+
+    # --- 4. Centrado del Mapa (Obtener info del servidor) ---
+    # Usamos .getInfo() para traer las coordenadas al script
     region_info = cordoba.geometry().bounds().getInfo()
-    # Calcular el centroide de la caja delimitadora (bounds)
     coords = region_info['coordinates'][0]
+    # Calcular el centroide de la caja delimitadora (bounds)
     center_lon = (coords[0][0] + coords[2][0]) / 2
     center_lat = (coords[0][1] + coords[1][1]) / 2
     map_center = [center_lat, center_lon]
     zoom_start = 7
+
 except Exception as e:
-    st.warning(f"No se pudo centrar el mapa en Córdoba: {e}. Usando centro por defecto.")
-    map_center = [0, 0] # Un valor por defecto si falla
-    zoom_start = 2
+    st.error(f"Error durante el procesamiento GEE: {e}")
+    st.stop()
 
 
-# --- 5. Creación y Visualización del Mapa ---
+# --- 5. Creación y Visualización del Mapa Folium ---
+st.markdown("Mapa interactivo del Índice IET:")
 
-# Crear un mapa base de Folium
-m = folium.Map(location=map_center, zoom_start=zoom_start)
+# Crear un mapa base de Folium (usamos un fondo más limpio)
+m = folium.Map(location=map_center, zoom_start=zoom_start, tiles="CartoDB positron")
 
 # Añadir tu capa GEE al mapa Folium usando geemap
-# geemap se encarga de obtener el Tile URL de GEE y añadirlo
 geemap_folium.add_ee_layer(
     m,                # El mapa folium
     iet_clipped,      # Tu imagen de GEE
@@ -117,5 +113,6 @@ m.add_child(folium.GeoJson(
 # Añadir un control de capas al mapa
 folium.LayerControl().add_to(m)
 
-# Mostrar el mapa en Streamlit usando st_folium
+# --- 6. Renderizar el mapa en Streamlit ---
+# Usamos st_folium para mostrar el mapa 'm'
 st_folium(m, width=1000, height=600, returned_objects=[])
