@@ -4,7 +4,7 @@ from pathlib import Path
 # Título de la página de inicio
 st.markdown('<h1 style="text-align:center">Bienvenid@ a Terrametrics</h1>', unsafe_allow_html=True)
 
-# División visual
+# Divisor
 st.divider()
 
 # Sobre el proyecto
@@ -25,7 +25,7 @@ No se trata solo de medir el territorio: <em><strong>se trata de darle a la gent
 </p>
 """, unsafe_allow_html=True)
 
-# División visual
+# Divisor
 st.divider()
 
 # Conexión con los Objetivos de Desarrollo Sostenible
@@ -66,7 +66,7 @@ with icon:
 with explanation:
     st.markdown('<p style="text-align: justify;">La democratización de la acción climática al brindar conocimiento a la ciudadanía para ejercer voto inteligente, que les permita participar de forma activa en la resolución de problemas ambientales.</p>', unsafe_allow_html=True)
 
-# División visual
+# Divisor
 st.divider()
 
 # Presentación del proyecto
@@ -75,7 +75,7 @@ st.markdown('<h2 style="text-align:center">Presentación del Proyecto</h2>', uns
 # Enlace al video de youtube
 st.video("https://youtu.be/Zj_qH5w0_7k?si=Hpk24ZL0Hsvwm1UV")
 
-# División visual
+# Divisor
 st.divider()
 
 # Repositorio de GitHub
