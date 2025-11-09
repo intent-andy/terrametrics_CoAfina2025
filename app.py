@@ -17,7 +17,8 @@ pages = {
     "Recursos": [
         st.Page("mapas.py", title="Mapas"),
         st.Page("graficos.py", title="Gráficos"),
-        st.Page("vid-int.py", title="Videos Interactivos")
+        st.Page("vid-int.py", title="Videos Interactivos"),
+        st.Page("references.py", title="Referencias")
     ],
     "Sobre nosotros": [st.Page("about.py", title="Sobre nosotros")]
 }

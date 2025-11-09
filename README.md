@@ -9,9 +9,10 @@ Resumen rápido
 
 Estructura principal (raíz del repo)
 - app.py — Launcher / navegación de la aplicación Streamlit.
-- mapas.py — Código para obtener índices desde Google Earth Engine y mostrar mapainteractivo.
+- mapas.py — Código para obtener índices desde Google Earth Engine y mostrar mapa interactivo.
 - graficos.py — Panel de gráficos a partir de CSV consolidados.
 - iet.py, ipmi.py, inicio.py, vid-int.py, about.py — páginas de la app.
+- references.py — página Streamlit que muestra la lista de referencias y bibliografía.
 - time-series_data/ — CSV consolidados:
   - coverage_completo_1985_2024.csv
   - secondary_vegetation_completo_1985_2024.csv
@@ -36,6 +37,7 @@ Ejecución
   streamlit run app.py
 - Páginas relevantes:
   - Mapas: requiere autenticación de Google Earth Engine. En local, ejecutar `earthengine authenticate` o configurar secrets en Streamlit Cloud (`EE_SERVICE_ACCOUNT` / `EE_PRIVATE_KEY`).
+  - Referencias: página "Referencias" incorporada en la app (archivo references.py) muestra la bibliografía usada.
   - Videos interactivos: vid-int.py reproduce mp4 desde la carpeta videos/{año}.mp4
 - Generación de videos: abrir `video_generation/Generador de videos.ipynb` y seguir las celdas; los MP4 se guardan en `video_generation/Videos/output` o en `videos/` según configuración.
 

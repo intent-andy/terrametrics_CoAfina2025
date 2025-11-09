@@ -43,6 +43,32 @@ Este proyecto analiza cambios territoriales históricos, genera reportes, visual
 2. Ejecutar `Analisis/Análisis de datos.ipynb` para generar reportes, métricas y gráficos.  
 3. Generar videos anuales con los archivos en `Videos/`.
 
+## Cambios recientes (actualizaciones aplicadas)
+
+- Los CSV consolidados en time-series_data se actualizaron para mostrar porcentajes:
+  - files: time-series_data/coverage_completo_1985_2024.csv, time-series_data/secondary_vegetation_completo_1985_2024.csv, time-series_data/vegetation_loss_completo_1985_2024.csv
+  - Valores ahora incluyen el símbolo `%` y las entradas que eran `-` se convirtieron a `0%`.
+  - Nota: esto cambia el tipo de dato a texto; los notebooks que procesen estas columnas deben convertir a numérico antes de cálculos (ej.: pandas: df[col].str.rstrip('%').astype(float) o dividir por 100 si necesitas fracción).
+
+- Se añadió una sección de Referencias al README principal (README.md en la raíz) con las fuentes usadas (ESA/Copernicus, Sentinel Hub, MapBiomas, Naciones Unidas, Esri, etc.).
+
+- Se creó una página Streamlit nueva para referencias (archivo: references.py) que presenta la lista de referencias desde la UI.
+
+## Recomendaciones prácticas tras los cambios
+
+- Si tus notebooks esperan columnas numéricas, adapta la lectura:
+  - Ejemplo rápido en pandas:
+    ```python
+    df = pd.read_csv('time-series_data/coverage_completo_1985_2024.csv')
+    df['Forests'] = df['Forests'].astype(str).str.rstrip('%').replace('', '0').astype(float)
+    ```
+  - O usar: df[col].str.rstrip('%').astype(float) / 100 si necesitas proporciones (0–1).
+
+- Unifica la ruta de salida de videos si prefieres un único folder (actualmente los MP4 pueden ir a video_generation/Videos/output o videos/). Actualiza vid-int.py según convenga.
+
+## Nota final
+Estos cambios buscan mejorar la legibilidad de los CSV para usos en visualización y documentación. Si prefieres mantener los valores como floats (sin `%`) para simplificar los notebooks, indícalo y revertimos el formato a numérico.
+
 ## Notas
 
 - Todos los CSV consolidados incluyen años de 1985 a 2024.  
