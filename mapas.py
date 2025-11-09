@@ -96,13 +96,12 @@ def initialize_ee_interactive():
 # Función para obtener TODOS los datos del script original
 def get_all_data():
     try:
-        # Definir la región de Córdoba (EXACTO como tu script)
-        cordoba = ee.FeatureCollection("FAO/GAUL/2015/level2") \
-            .filter(ee.Filter.eq('ADM2_NAME', 'Córdoba'))
+        buenos_aires = ee.FeatureCollection("FAO/GAUL/2015/level2") \
+            .filter(ee.Filter.eq('ADM2_NAME', 'Buenos Aires'))
         
         # Obtener imágenes Sentinel-2 (EXACTO como tu script)
         s2 = ee.ImageCollection("COPERNICUS/S2_SR") \
-            .filterBounds(cordoba) \
+            .filterBounds(buenos_aires) \
             .filterDate('2023-01-01', '2023-12-31') \
             .select(['B4', 'B8', 'B11']) \
             .median()
@@ -113,7 +112,7 @@ def get_all_data():
         
         # Obtener datos de precipitación CHIRPS (EXACTO como tu script)
         chirps = ee.ImageCollection("UCSB-CHG/CHIRPS/DAILY") \
-            .filterBounds(cordoba) \
+            .filterBounds(buenos_aires) \
             .filterDate('2023-01-01', '2023-12-31') \
             .sum() \
             .rename('Precipitation')
@@ -132,11 +131,11 @@ def get_all_data():
             .rename('IET')
         
         return {
-            'iet': iet.clip(cordoba),
-            'ndvi': ndvi.clip(cordoba),
-            'ndmi': ndmi.clip(cordoba),
-            'precipitation': chirps.clip(cordoba),
-            'cordoba': cordoba
+            'iet': iet.clip(buenos_aires),
+            'ndvi': ndvi.clip(buenos_aires),
+            'ndmi': ndmi.clip(buenos_aires),
+            'precipitation': chirps.clip(buenos_aires),
+            'buenos_aires': buenos_aires
         }
         
     except Exception as e:
@@ -223,7 +222,7 @@ def main():
                 st.sidebar.info("**Precipitación**: Acumulado anual CHIRPS")
             
             # Añadir la región de Córdoba como contorno
-            m.addLayer(data['cordoba'].style(**{'color': 'black', 'fillColor': '00000000'}), {}, 'Límites Córdoba')
+            m.addLayer(data['buenos_aires'].style(**{'color': 'black', 'fillColor': '00000000'}), {}, 'Límites Córdoba')
             
             # Añadir control de capas
             m.addLayerControl()
@@ -237,7 +236,7 @@ def main():
                 if capa_seleccionada == "Índice IET":
                     stats = data['iet'].reduceRegion(
                         reducer=ee.Reducer.mean(),
-                        geometry=data['cordoba'].geometry(),
+                        geometry=data['buenos_aires'].geometry(),
                         scale=1000
                     ).getInfo()
                     st.write(f"Valor promedio IET: {stats.get('IET', 'N/A'):.4f}")
@@ -245,7 +244,7 @@ def main():
                 elif capa_seleccionada == "NDVI":
                     stats = data['ndvi'].reduceRegion(
                         reducer=ee.Reducer.mean(),
-                        geometry=data['cordoba'].geometry(),
+                        geometry=data['buenos_aires'].geometry(),
                         scale=1000
                     ).getInfo()
                     st.write(f"Valor promedio NDVI: {stats.get('NDVI', 'N/A'):.4f}")
@@ -253,7 +252,7 @@ def main():
                 elif capa_seleccionada == "NDMI":
                     stats = data['ndmi'].reduceRegion(
                         reducer=ee.Reducer.mean(),
-                        geometry=data['cordoba'].geometry(),
+                        geometry=data['buenos_aires'].geometry(),
                         scale=1000
                     ).getInfo()
                     st.write(f"Valor promedio NDMI: {stats.get('NDMI', 'N/A'):.4f}")
@@ -261,7 +260,7 @@ def main():
                 elif capa_seleccionada == "Precipitación":
                     stats = data['precipitation'].reduceRegion(
                         reducer=ee.Reducer.mean(),
-                        geometry=data['cordoba'].geometry(),
+                        geometry=data['buenos_aires'].geometry(),
                         scale=1000
                     ).getInfo()
                     st.write(f"Precipitación promedio: {stats.get('Precipitation', 'N/A'):.0f} mm")
