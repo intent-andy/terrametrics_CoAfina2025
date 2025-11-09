@@ -71,6 +71,7 @@ This work is licensed under a
 
 Contacto
 - Repositorio: https://github.com/intent-andy/terrametrics_CoAfina2025
+- Link Video: https://www.youtube.com/watch?v=Zejh2q0paII
 
 ## Referencias
 
