@@ -69,15 +69,6 @@ with explanation:
 # Divisor
 st.divider()
 
-# Presentación del proyecto
-st.markdown('<h2 style="text-align:center">Presentación del Proyecto</h2>', unsafe_allow_html=True)
-
-# Enlace al video de youtube
-st.video("https://youtu.be/Zj_qH5w0_7k?si=Hpk24ZL0Hsvwm1UV")
-
-# Divisor
-st.divider()
-
 # Repositorio de GitHub
 st.markdown('<h2 style="text-align:center">Repositorio de GitHub</h2>', unsafe_allow_html=True)
 st.markdown("""

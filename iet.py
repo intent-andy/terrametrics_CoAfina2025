@@ -30,11 +30,11 @@ st.markdown("""
 <p style="text-align: justify;"><p style="text-align: justify;">El IET se compone de una suma de los índices de vegetación y humedad divididos por el índice de urbanismo + 1, de la siguiente manera:</p>
 """, unsafe_allow_html=True)
 
-st.latex(r"""IET = \frac{\text{NDMI} + \text{SAVI} + \text{EVI}}{\text{NDBI} + 1}""" )
+st.latex(r"""\text{IET} = \frac{\text{NDMI} + \text{SAVI} + \text{EVI}}{\text{NDBI} + 1}""" )
 
-st.markdown('<p style="text-align: justify;">Donde:</p', unsafe_allow_html=True)
+st.markdown('<p style="text-align: justify;">Donde:</p>', unsafe_allow_html=True)
 st.latex(r"""
-NDBI = \frac{\text{SWIR} - \text{NIR}}{\text{SWIR} + \text{NIR}}
+\text{NDBI} = \frac{\text{SWIR} - \text{NIR}}{\text{SWIR} + \text{NIR}}
 """)
 st.markdown("""<p style="text-align: justify;"> Esta suma en el denominador nos permite evitar dividir entre cero y penaliza la presencia de construcciones disminuyendo la magnitud del IVT. Si hay muchas construcciones, NDIR es cercano a 1 y si hay pocas, es cercano a 0.</p>
 <p style="text-align: justify;">Así el IVT nos hace enfasis en vegetación baja, típica de las zonas periurbanas que suelen presentar aumento de la frontera agricola y aumento de las construcciones""", unsafe_allow_html=True)
