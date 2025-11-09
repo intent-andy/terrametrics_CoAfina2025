@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "periodo": "1985-2024",
+    "total_años": 40,
+    "unidades": "porcentaje"
+  },
+  "tendencias_anuales": [
+    {
+      "year": 1985,
+      "vegetacion_total": 76.19999999999999,
+      "areas_antropogenicas": 22.1,
+      "diferencia": 54.09999999999999
+    },
+    {
+      "year": 1986,
+      "vegetacion_total": 75.8,
+      "areas_antropogenicas": 22.6,
+      "diferencia": 53.199999999999996
+    },
+    {
+      "year": 1987,
+      "vegetacion_total": 75.4,
+      "areas_antropogenicas": 22.9,
+      "diferencia": 52.50000000000001
+    },
+    {
+      "year": 1988,
+      "vegetacion_total": 75.2,
+      "areas_antropogenicas": 23.0,
+      "diferencia": 52.2
+    },
+    {
+      "year": 1989,
+      "vegetacion_total": 75.0,
+      "areas_antropogenicas": 23.2,
+      "diferencia": 51.8
+    },
+    {
+      "year": 1990,
+      "vegetacion_total": 74.9,
+      "areas_antropogenicas": 23.2,
+      "diferencia": 51.7
+    },
+    {
+      "year": 1991,
+      "vegetacion_total": 74.9,
+      "areas_antropogenicas": 23.3,
+      "diferencia": 51.60000000000001
+    },
+    {
+      "year": 1992,
+      "vegetacion_total": 75.0,
+      "areas_antropogenicas": 23.3,
+      "diferencia": 51.7
+    },
+    {
+      "year": 1993,
+      "vegetacion_total": 75.0,
+      "areas_antropogenicas": 23.2,
+      "diferencia": 51.8
+    },
+    {
+      "year": 1994,
+      "vegetacion_total": 74.8,
+      "areas_antropogenicas": 23.5,
+      "diferencia": 51.3
+    },
+    {
+      "year": 1995,
+      "vegetacion_total": 74.4,
+      "areas_antropogenicas": 23.8,
+      "diferencia": 50.60000000000001
+    },
+    {
+      "year": 1996,
+      "vegetacion_total": 74.0,
+      "areas_antropogenicas": 24.299999999999997,
+      "diferencia": 49.7
+    },
+    {
+      "year": 1997,
+      "vegetacion_total": 73.9,
+      "areas_antropogenicas": 24.4,
+      "diferencia": 49.50000000000001
+    },
+    {
+      "year": 1998,
+      "vegetacion_total": 73.9,
+      "areas_antropogenicas": 24.3,
+      "diferencia": 49.60000000000001
+    },
+    {
+      "year": 1999,
+      "vegetacion_total": 73.9,
+      "areas_antropogenicas": 24.5,
+      "diferencia": 49.400000000000006
+    },
+    {
+      "year": 2000,
+      "vegetacion_total": 73.8,
+      "areas_antropogenicas": 24.5,
+      "diferencia": 49.3
+    },
+    {
+      "year": 2001,
+      "vegetacion_total": 73.8,
+      "areas_antropogenicas": 24.5,
+      "diferencia": 49.3
+    },
+    {
+      "year": 2002,
+      "vegetacion_total": 73.7,
+      "areas_antropogenicas": 24.6,
+      "diferencia": 49.1
+    },
+    {
+      "year": 2003,
+      "vegetacion_total": 73.5,
+      "areas_antropogenicas": 24.700000000000003,
+      "diferencia": 48.8
+    },
+    {
+      "year": 2004,
+      "vegetacion_total": 73.1,
+      "areas_antropogenicas": 25.2,
+      "diferencia": 47.89999999999999
+    },
+    {
+      "year": 2005,
+      "vegetacion_total": 72.8,
+      "areas_antropogenicas": 25.5,
+      "diferencia": 47.3
+    },
+    {
+      "year": 2006,
+      "vegetacion_total": 72.6,
+      "areas_antropogenicas": 25.6,
+      "diferencia": 46.99999999999999
+    },
+    {
+      "year": 2007,
+      "vegetacion_total": 72.5,
+      "areas_antropogenicas": 25.8,
+      "diferencia": 46.7
+    },
+    {
+      "year": 2008,
+      "vegetacion_total": 72.3,
+      "areas_antropogenicas": 26.1,
+      "diferencia": 46.199999999999996
+    },
+    {
+      "year": 2009,
+      "vegetacion_total": 72.1,
+      "areas_antropogenicas": 26.4,
+      "diferencia": 45.699999999999996
+    },
+    {
+      "year": 2010,
+      "vegetacion_total": 71.9,
+      "areas_antropogenicas": 26.5,
+      "diferencia": 45.400000000000006
+    },
+    {
+      "year": 2011,
+      "vegetacion_total": 71.6,
+      "areas_antropogenicas": 26.700000000000003,
+      "diferencia": 44.89999999999999
+    },
+    {
+      "year": 2012,
+      "vegetacion_total": 71.6,
+      "areas_antropogenicas": 26.799999999999997,
+      "diferencia": 44.8
+    },
+    {
+      "year": 2013,
+      "vegetacion_total": 71.4,
+      "areas_antropogenicas": 26.9,
+      "diferencia": 44.50000000000001
+    },
+    {
+      "year": 2014,
+      "vegetacion_total": 71.6,
+      "areas_antropogenicas": 26.799999999999997,
+      "diferencia": 44.8
+    },
+    {
+      "year": 2015,
+      "vegetacion_total": 71.6,
+      "areas_antropogenicas": 26.700000000000003,
+      "diferencia": 44.89999999999999
+    },
+    {
+      "year": 2016,
+      "vegetacion_total": 71.8,
+      "areas_antropogenicas": 26.6,
+      "diferencia": 45.199999999999996
+    },
+    {
+      "year": 2017,
+      "vegetacion_total": 71.7,
+      "areas_antropogenicas": 26.5,
+      "diferencia": 45.2
+    },
+    {
+      "year": 2018,
+      "vegetacion_total": 71.6,
+      "areas_antropogenicas": 26.6,
+      "diferencia": 44.99999999999999
+    },
+    {
+      "year": 2019,
+      "vegetacion_total": 71.6,
+      "areas_antropogenicas": 26.8,
+      "diferencia": 44.8
+    },
+    {
+      "year": 2020,
+      "vegetacion_total": 71.6,
+      "areas_antropogenicas": 26.799999999999997,
+      "diferencia": 44.8
+    },
+    {
+      "year": 2021,
+      "vegetacion_total": 71.4,
+      "areas_antropogenicas": 27.0,
+      "diferencia": 44.400000000000006
+    },
+    {
+      "year": 2022,
+      "vegetacion_total": 71.4,
+      "areas_antropogenicas": 27.1,
+      "diferencia": 44.300000000000004
+    },
+    {
+      "year": 2023,
+      "vegetacion_total": 71.4,
+      "areas_antropogenicas": 27.200000000000003,
+      "diferencia": 44.2
+    },
+    {
+      "year": 2024,
+      "vegetacion_total": 71.5,
+      "areas_antropogenicas": 26.9,
+      "diferencia": 44.6
+    }
+  ],
+  "puntos_clave": []
+}
